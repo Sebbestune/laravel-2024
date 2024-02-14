@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -34,6 +35,21 @@ class PostController extends Controller
         $post->description = $request->description;
         $post->save();
         return redirect('add-blog-post-form')->with('status', 'Blog Post Form Data Has Been inserted');
+    }
+
+    public function storecomment(Request $request)
+    {
+        /*
+        $comment = new Comment(['comment' => $request->comment]);
+        $post = Post::find($request->postid);
+        $post->comments()->save($comment);
+        */
+        $post = Post::find($request->postid);
+        $post->comments()->create([
+            'comment' => $request->comment,
+        ]);
+
+        return redirect('/');
     }
 
     /**

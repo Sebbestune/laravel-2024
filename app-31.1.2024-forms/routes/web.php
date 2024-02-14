@@ -17,3 +17,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PostController::class, 'index']);
 Route::get('add-blog-post-form', [PostController::class, 'create']);
 Route::post('store-form', [PostController::class, 'store']);
+Route::post('posts/comment/add', [PostController::class, 'storecomment'])->name('post-add-comment');
